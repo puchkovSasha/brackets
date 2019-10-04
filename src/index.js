@@ -1,17 +1,17 @@
 module.exports = function check(str, bracketsConfig) {
     
-        var strMain = str.split(''), stack = [], closeIndex, openIndex;
+        let strMain = str.split(''), box = [], closeIndex, openIndex;
 
             
-        var sm = bracketsConfig;
+   
 
-        var strBr = String(sm);
+        let strBr = String(bracketsConfig);
 
-        var arr = strBr.split(',');
+        let arr = strBr.split(',');
 
-        var open = [];
+        let open = [];
 
-        var close=[];
+        let close=[];
 
 
     
@@ -38,14 +38,14 @@ module.exports = function check(str, bracketsConfig) {
         openIndex = open.indexOf(strMain[i]);
         if (openIndex !== -1) {
 
-            stack.push(openIndex);
+            box.push(openIndex);
             continue;
         }
 
         closeIndex = close.indexOf(strMain[i]);
         if (closeIndex !== -1) {
 
-            openIndex = stack.pop();
+            openIndex = box.pop();
             if (closeIndex !== openIndex) {
                 return false;
             }
@@ -53,7 +53,7 @@ module.exports = function check(str, bracketsConfig) {
     }
 
 
-    if (stack.length !== 0) {
+    if (box.length !== 0) {
         return false;
     } else{
         return true;
